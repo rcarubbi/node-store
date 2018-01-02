@@ -1,8 +1,11 @@
 'use strict';
 
- 
+
 const ValidationContract = require('../validators/fluent-validator');
 const repository = require('../repositories/product-repository');
+const azureStorage = require('azure-storage');
+const guid = require('guid');
+const config = require('../config');
 
 exports.get = async (req, res, next) => {
     try {
@@ -68,11 +71,39 @@ exports.post = async (req, res, next) => {
     }
 
     try {
-        await repository.create(req.body);
+
+        const blobSvc = azureStorage.createBlobService(config.containerConnectionString);
+        let filename = guid.raw().toString() + '.jpg';
+        let rawData = req.body.image;
+        let matches = rawData.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+        let type = matches[1];
+        let buffer = new Buffer(matches[2], 'base64');
+
+        await blobSvc.createBlockBlobFromText('product-images', filename, buffer,
+            {
+                contentType: type
+            },
+            function (error, result, response) {
+                if (error) {
+                    filename = 'default-product.png'
+                }
+            });
+
+
+        await repository.create({
+            title: req.body.title,
+            slug: req.body.slug,
+            description: req.body.description,
+            price: req.body.price,
+            active: true,
+            tags : req.body.tags,
+            image: 'https://carubbi.blob.core.windows.net/product-images/' + filename
+        });
         res.status(201).send({
             message: "Produto cadastrado com sucesso!"
         });
     } catch (e) {
+        
         res.status(500).send({
             message: 'Falha ao processar sua requisição',
             error: e

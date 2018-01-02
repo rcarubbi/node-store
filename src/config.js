@@ -3,6 +3,6 @@ global.EMAIL_TMPL = 'Olá, <strong>{0}</strong>, seja bem vindo à node stode!';
 
 module.exports = {
     connectionString: 'mongodb://nodestore:nodestore@ds058739.mlab.com:58739/nodestore',
-    sendgridKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    containerConnectionString: ''
+    sendgridKey: '<suachave>',
+    containerConnectionString: 'DefaultEndpointsProtocol=https;AccountName=<nomeconta>;AccountKey=<suachave>;EndpointSuffix=core.windows.net'
 }
