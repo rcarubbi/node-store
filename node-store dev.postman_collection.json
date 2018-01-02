@@ -1,0 +1,239 @@
+{
+	"variables": [],
+	"info": {
+		"name": "node-store dev",
+		"_postman_id": "cb0f2da2-32fa-7ed7-f935-d0bb9684138b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"description": "",
+			"item": [
+				{
+					"name": "Post Product",
+					"request": {
+						"url": "http://localhost:3000/product",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\" : \"Mouse Gamer\",\n\t\"description\" : \"Mouse Gamer\",\n\t\"slug\" : \"mouse-gamer\",\n\t\"price\" : \"299\",\n\t\"active\" : true,\n\t\"tags\" : [\"informática\",\"mouse\",\"games\"]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Put Product",
+					"request": {
+						"url": "http://localhost:3000/product/5a4aab603d30f80d2cf78dfb",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\" : \"Mouse Gamer\",\n\t\"description\" : \"Mouse Gamer\",\n\t\"slug\" : \"mouse-gamer\",\n\t\"price\" : \"299\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"url": "http://localhost:3000/product",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"5a4aab603d30f80d2cf78dfb\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products",
+					"request": {
+						"url": "http://localhost:3000/product",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\tid: 1,\n\ttitle: 'teste'\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products by slug",
+					"request": {
+						"url": "http://localhost:3000/product/mouse-gamer",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\tid: 1,\n\ttitle: 'teste'\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products by id",
+					"request": {
+						"url": "http://localhost:3000/product/admin/5a4aab603d30f80d2cf78dfb",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\tid: 1,\n\ttitle: 'teste'\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products by tags",
+					"request": {
+						"url": "http://localhost:3000/product/tags/informática",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\tid: 1,\n\ttitle: 'teste'\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"description": "",
+			"item": [
+				{
+					"name": "Post Customer",
+					"request": {
+						"url": "http://localhost:3000/customer",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Raphael Carubbi Neto\",\n\t\"email\" : \"rcarubbi@gmail.com\",\n\t\"password\" : \"raphakf\",\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer",
+					"request": {
+						"url": "http://localhost:3000/customer",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Raphael Carubbi Neto\",\n\t\"email\" : \"rcarubbi@gmail.com\",\n\t\"password\" : \"raphakf\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"description": "",
+			"item": [
+				{
+					"name": "Post Order",
+					"request": {
+						"url": "http://localhost:3000/customer",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Raphael Carubbi Neto\",\n\t\"email\" : \"rcarubbi@gmail.com\",\n\t\"password\" : \"raphakf\",\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order",
+					"request": {
+						"url": "http://localhost:3000/customer",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Raphael Carubbi Neto\",\n\t\"email\" : \"rcarubbi@gmail.com\",\n\t\"password\" : \"raphakf\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Version",
+			"request": {
+				"url": "http://localhost:3000",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\tid: 1,\n\ttitle: 'teste'\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
