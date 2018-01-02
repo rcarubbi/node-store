@@ -6,7 +6,10 @@ const authService = require('../services/auth-service');
 
 exports.get = async (req, res, next) => {
     try {
-        var data = await repository.get();
+        const token = req.body.token || req.query.token || req.headers['x-access-token'];
+        const userData = await authService.decodeToken(token);
+
+        var data = await repository.getByCustomer(userData.id);
         res.status(200).send(data);
     } catch (e) {
         res.status(500).send({
