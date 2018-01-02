@@ -29,7 +29,7 @@ exports.authenticate = async (req, res, next) => {
         });
 
         if (!customer) {
-            res.status(404).send({
+            res.status(401).send({
                 message: 'Usuário ou senha inválidos'
             });
             return;
@@ -42,6 +42,44 @@ exports.authenticate = async (req, res, next) => {
 
         res.status(201).send({
             token: token,
+            data: {
+                email: customer.email,
+                name: customer.name,
+                id: customer._id
+            }
+        });
+    } catch (e) {
+        res.status(500).send({
+            message: 'Falha ao processar sua requisição',
+            error: e
+        });
+    }
+};
+
+
+exports.refreshToken = async (req, res, next) => {
+    try {
+
+        const token = req.body.token || req.query.token || req.headers['x-access-token'];
+        const data = await authService.decodeToken(token);
+
+
+        const customer = await repository.getById(data.id);
+
+        if (!customer) {
+            res.status(404).send({
+                message: 'Cliente não encontrado'
+            });
+            return;
+        }
+        const newToken = await authService.generateToken({
+            email: customer.email,
+            name: customer.name,
+            id: customer._id
+        });
+
+        res.status(201).send({
+            token: newToken,
             data: {
                 email: customer.email,
                 name: customer.name,
